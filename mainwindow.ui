@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>493</width>
-    <height>317</height>
+    <width>497</width>
+    <height>465</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,16 +19,16 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>491</width>
-      <height>291</height>
+      <width>501</width>
+      <height>441</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Estudiantes</string>
      </attribute>
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
@@ -36,12 +36,19 @@
         <x>0</x>
         <y>0</y>
         <width>491</width>
-        <height>251</height>
+        <height>411</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <layout class="QGridLayout" name="gridLayout">
+         <item row="2" column="0">
+          <widget class="QPushButton" name="cmdAgregarEstudiante">
+           <property name="text">
+            <string>Agregar</string>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="txtNombreEstudiante"/>
          </item>
@@ -57,6 +64,20 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="txtCodigoEstudiante">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPushButton" name="cmdEliminarEstudiante">
+           <property name="text">
+            <string>Eliminar</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_2">
            <property name="font">
@@ -66,27 +87,6 @@
            </property>
            <property name="text">
             <string>Código:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="txtCodigoEstudiante">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QPushButton" name="cmdAgregarEstudiante">
-           <property name="text">
-            <string>Agregar</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QPushButton" name="cmdEliminarEstudiante">
-           <property name="text">
-            <string>Eliminar</string>
            </property>
           </widget>
          </item>
@@ -100,7 +100,7 @@
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Entregas</string>
      </attribute>
      <widget class="QWidget" name="verticalLayoutWidget_2">
       <property name="geometry">
@@ -108,7 +108,7 @@
         <x>0</x>
         <y>0</y>
         <width>491</width>
-        <height>251</height>
+        <height>411</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -222,8 +222,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>493</width>
-     <height>17</height>
+     <width>497</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
