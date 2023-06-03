@@ -30,12 +30,12 @@ private slots:
 
     void on_cmdAgregarTarea_clicked();
 
-    void on_cmdEliminarDepartamento_clicked();
+    void on_cmdEliminarEntrega_clicked();
 
 private:
     Ui::MainWindow *ui;
     void actualizarTablaEstudiantes(const std::vector<Estudiante>& estudiantes);
-    void actualizarTablaEntregas(const std::vector<Entrega>& entregas);
+    void actualizarTablaEntregas(const std::vector<Entrega> &entregas);
     void actualizarComboBox(const std::vector<Estudiante>& estudiantes);
     SistemaAcademico sistemaAcademico;
     QStandardItemModel *tableModel;

@@ -42,7 +42,7 @@ void MainWindow::actualizarTablaEstudiantes(const std::vector<Estudiante>& estud
 
     tableModel->setHorizontalHeaderLabels({"Código", "Nombre"});
 
-        for (const auto& estudiante : estudiantes)
+        for (auto& estudiante : estudiantes)
     {
         QList<QStandardItem*> rowItems;
         rowItems.append(new QStandardItem(QString::number(estudiante.getCodigo())));
@@ -51,11 +51,13 @@ void MainWindow::actualizarTablaEstudiantes(const std::vector<Estudiante>& estud
     }
 }
 
-void MainWindow::actualizarTablaEntregas(const std::vector<Entrega>& entregas){
+void MainWindow::actualizarTablaEntregas(const std::vector<Entrega>& entregas)
+{
+
     tableModel2->clear();
     tableModel2->setHorizontalHeaderLabels({"Nombre Actividad", "Nota", "Porcentaje %"});
 
-    for (const auto& entrega : entregas) {
+    for (auto& entrega : entregas) {
         QList<QStandardItem*> rowItems;
         QStandardItem* nombreItem = new QStandardItem(QString::fromStdString(entrega.getNombre()));
         QStandardItem* notaItem = new QStandardItem(QString::number(entrega.getNota()));
@@ -74,7 +76,7 @@ void MainWindow::actualizarComboBox(const std::vector<Estudiante>& estudiantes)
 {
     ui->cboEstudiantes->clear();
 
-    for (const auto& estudiante : estudiantes)
+    for (auto& estudiante : estudiantes)
     {
         ui->cboEstudiantes->addItem(QString::fromStdString(estudiante.getNombre()));
     }
@@ -82,12 +84,12 @@ void MainWindow::actualizarComboBox(const std::vector<Estudiante>& estudiantes)
 
 void MainWindow::on_cboEstudiantes_currentIndexChanged(int index)
 {
-    const std::vector<Estudiante>& estudiantes = sistemaAcademico.getEstudiantes();
-    if (index >= 0 && index < estudiantes.size()) {
-        actualizarTablaEntregas(estudiantes[index].getEntregas());
+    int tamanio = sistemaAcademico.getEstudiantes().size();
+    if (index >= 0 && index < tamanio) {
+        actualizarTablaEntregas(sistemaAcademico.getEstudiantes()[index].getEntregas());
+
     }
 }
-
 
 void MainWindow::on_cmdEliminarEstudiante_clicked()
 {
@@ -130,28 +132,43 @@ void MainWindow::on_cboEntregas_currentIndexChanged(int index)
 
 void MainWindow::on_cmdAgregarTarea_clicked()
 {
+    int posicion = ui->cboEstudiantes->currentIndex();
+
     QString nombre = ui->txtNombreTarea->text();
     double nota = ui->txtNota->text().toDouble();
     double porcentaje = ui->txtPorcentaje->text().toDouble();
-
-    const std::vector<Estudiante>& estudiantes = sistemaAcademico.getEstudiantes();
-    const Estudiante& estudiante = estudiantes[ui->cboEstudiantes->currentIndex()];
-
     int tipoEntrega = ui->cboEntregas->currentIndex();
-    estudiante.agregarEntrega(nombre.toStdString(), nota, tipoEntrega);
-    const std::vector<Entrega>& entregasEstudiante = estudiante.getEntregas();
 
-    if (tipoEntrega == 3) {
-        const Entrega& entrega = entregasEstudiante.back();
-        entrega.setPorcentaje(porcentaje);
-    }
+    sistemaAcademico.getEstudiantes()[posicion].agregarEntrega(nombre.toStdString(), nota, tipoEntrega);
+        if (tipoEntrega == 3 && ! sistemaAcademico.getEstudiantes()[posicion].getEntregas().empty()) {
+            sistemaAcademico.getEstudiantes()[posicion].getEntregas().back().setPorcentaje(porcentaje);
+        }
 
-    actualizarTablaEntregas(entregasEstudiante);
+        actualizarTablaEntregas(sistemaAcademico.getEstudiantes()[posicion].getEntregas());
+
+
+
 }
 
 
-void MainWindow::on_cmdEliminarDepartamento_clicked()
-{
 
+void MainWindow::on_cmdEliminarEntrega_clicked()
+{
+        int estudianteIndex = ui->cboEstudiantes->currentIndex();
+        int entregaIndex = ui->tableEntregas->currentIndex().row();
+
+        if (estudianteIndex >= 0 && entregaIndex >= 0)
+        {
+            if (estudianteIndex < sistemaAcademico.getEstudiantes().size())
+            {
+                if (entregaIndex < sistemaAcademico.getEstudiantes()[estudianteIndex].getEntregas().size())
+                {
+                    Entrega entrega = sistemaAcademico.getEstudiantes()[estudianteIndex].getEntregas()[entregaIndex];
+                    sistemaAcademico.getEstudiantes()[estudianteIndex].eliminarEntrega(entrega);
+
+                    actualizarTablaEntregas(sistemaAcademico.getEstudiantes()[estudianteIndex].getEntregas());
+                }
+            }
+        }
 }
 

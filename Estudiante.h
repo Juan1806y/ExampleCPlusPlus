@@ -23,13 +23,13 @@ public:
     Estudiante(int, std::string);
     bool agregarEntrega(std::string, double, int);
     bool eliminarEntrega(Entrega);
-    bool operator==(const Estudiante& otro) const;
+    bool operator==(const Estudiante& otro);
     std::string toString();
     int getCodigo() const;
     void setCodigo(int);
-    std::string getNombre ()const;
+    std::string getNombre () const;
     void setNombre(std::string);
-    std::vector<Entrega> getEntregas() const;
+    std::vector<Entrega>& getEntregas();
 
 };
 

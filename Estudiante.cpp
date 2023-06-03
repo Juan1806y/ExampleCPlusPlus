@@ -2,6 +2,7 @@
 #include "Tarea.h"
 #include <vector>
 #include <algorithm>
+#include <QDebug>
 
 Estudiante::Estudiante(){
 
@@ -40,6 +41,7 @@ bool Estudiante::agregarEntrega(std::string nombre, double nota, int tipoEntrega
         entregas.push_back(entregasAux);
         agrego = true;
     }
+    qDebug() << "Tamaño del vector entregas: " << entregas.size();
     return agrego;
 }
 
@@ -57,7 +59,7 @@ bool Estudiante::eliminarEntrega(Entrega entrega) {
 
 }
 
-bool Estudiante::operator==(const Estudiante& otro) const {
+bool Estudiante::operator==(const Estudiante& otro) {
     return (this->codigo == otro.codigo) || (this->nombre == otro.nombre);
 }
 
@@ -81,6 +83,7 @@ void Estudiante::setNombre(std::string nombre){
     this->nombre = nombre;
 }
 
-std::vector<Entrega> Estudiante::getEntregas() const{
+std::vector<Entrega>& Estudiante::getEntregas(){
+    qDebug() << "Tamaño del vector entregas: " << entregas.size();
     return this->entregas;
 }

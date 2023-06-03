@@ -13,7 +13,7 @@ Entrega::Entrega(std::string nombre, double nota, double porcentaje) {
     this->porcentaje=porcentaje;
 }
 
-bool Entrega::operator==(const Entrega& otro) const {
+bool Entrega::operator==(const Entrega& otro){
     return (this->nombre == otro.nombre);
 }
 

@@ -28,6 +28,6 @@ bool SistemaAcademico::eliminarEstudiante(Estudiante e) {
     return elimino;
 }
 
-std::vector<Estudiante> SistemaAcademico::getEstudiantes() const{
+std::vector<Estudiante>& SistemaAcademico::getEstudiantes() {
     return this->estudiantes;
 }

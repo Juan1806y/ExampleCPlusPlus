@@ -17,7 +17,7 @@ public:
     SistemaAcademico();
     bool agregarEstudiante(int, std::string);
     bool eliminarEstudiante(Estudiante);
-    std::vector<Estudiante> getEstudiantes()const;
+    std::vector<Estudiante>& getEstudiantes() ;
 
 };
 
