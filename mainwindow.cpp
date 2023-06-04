@@ -61,6 +61,8 @@ void MainWindow::on_cmdAgregarEstudiante_clicked()
     else{
     QMessageBox::information(this, "Error","No agregue estudiantes repetidos");
     }
+    ui->txtCodigoEstudiante->clear();
+    ui->txtNombreEstudiante->clear();
 }
 
 
@@ -213,6 +215,9 @@ void MainWindow::on_cmdAgregarTarea_clicked()
     else{
     QMessageBox::information(this, "Error","No agregue entregas repetidas");
     }
+    ui->txtNombreTarea->clear();
+    ui->txtNota->clear();
+
 }
 
 void MainWindow::on_cmdEliminarEntrega_clicked()
